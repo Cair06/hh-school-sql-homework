@@ -152,4 +152,5 @@ SELECT
   v.created_at + (g.days_after_publish || ' days')::interval
 FROM generated AS g
 JOIN vacancies AS v ON v.id = g.vacancy_id
-CROSS JOIN application_data AS d;
+CROSS JOIN application_data AS d
+ON CONFLICT DO NOTHING;

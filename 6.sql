@@ -6,11 +6,6 @@ CREATE INDEX idx_resumes_candidate_id ON resumes (candidate_id);
 CREATE INDEX idx_resumes_specialization_id ON resumes (specialization_id);
 CREATE INDEX idx_applications_resume_id ON applications (resume_id);
 
--- задание 3: запрос группирует вакансии по region и джойнит areas.
--- индекс на area_id ускоряет и JOIN, и GROUP BY.
--- на 10к строк выигрыш небольшой (4.2ms → 4.1ms)
-CREATE INDEX idx_vacancies_area_id ON vacancies (area_id);
-
 -- задание 5: запрос джойнит applications с vacancies и фильтрует по дате отклика.
 -- композитный индекс (vacancy_id, created_at) покрывает оба условия сразу —
 -- сначала находим все отклики по нужной вакансии, потом сразу режем по дате,
